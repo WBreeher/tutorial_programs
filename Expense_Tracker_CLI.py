@@ -297,7 +297,15 @@ def main():                                                                     
                         print(f"Removed: {removed['name']}")                        # Confirm which expense was removed by printing its name
 
                 elif action == "clear":                                             # If user chose clear all expenses
-                    clear_all_expense(expense)                                      # Clear all expenses and save empty list
+
+                    confirm_action = input("This action can not be undone, do you still wish to continue: Y/N").strip().lower()
+
+                    if confirm_action == "y":
+                        print("All currently tracked expenses have been cleared.")
+                        clear_all_expense(expense)                                      # Clear all expenses and save empty list
+
+                    if confirm_action == "n":
+                        break
 
                 elif action == "back":                                              # If user chose go back
                     break                                                           # Exit delete submenu loop and return to main menu
